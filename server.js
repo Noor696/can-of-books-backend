@@ -50,7 +50,7 @@ async function seedData(){
   await fourthbook.save();
 }
 
-// seedData(); //call seedData function
+ seedData(); //call seedData function
 
 // Routes
 app.get('/',homeHandler);
@@ -58,7 +58,7 @@ app.get('/books', booksRouteHandler)
 app.get('/test',testHandler);
 app.get('*',defualtHandler);
 
-// http://localhost:3010/
+// http://localhost:3001/
 function homeHandler(request,response){
   res.send("Hi from the home route");
 }
@@ -75,12 +75,12 @@ function booksRouteHandler(request,response){
   })
 }
 
-// http://localhost:3010/test
+// http://localhost:3001/test
 function testHandler(request,response){
   res.status(200).send("you are request the test route");
 }
 
-// http://localhost:3010/*
+// http://localhost:3001/*
 function defualtHandler(req,res){
   res.status(404).send("sory,404 page not found");
 }
