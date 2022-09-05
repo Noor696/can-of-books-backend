@@ -60,7 +60,7 @@ app.get('*',defualtHandler);
 
 // http://localhost:3001/
 function homeHandler(request,response){
-  res.send("Hi from the home route");
+  response.send("Hi from the home route");
 }
 
 function booksRouteHandler(request,response){
@@ -70,19 +70,19 @@ function booksRouteHandler(request,response){
     }
     else 
     {
-      res.send(result)
+      response.send(result)
     }
   })
 }
 
 // http://localhost:3001/test
 function testHandler(request,response){
-  res.status(200).send("you are request the test route");
+  response.status(200).send("you are request the test route");
 }
 
 // http://localhost:3001/*
-function defualtHandler(req,res){
-  res.status(404).send("sory,404 page not found");
+function defualtHandler(request,response){
+  response.status(404).send("sory,404 page not found");
 }
 
 
