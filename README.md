@@ -50,3 +50,8 @@ Actual time needed to complete: -- hrs
 
 
 ## Credit and Collaborations
+
+
+## Some notes:
+Get : put the data attached with URL inside the header
+post : put the data inside the body and no one see the body except the destination

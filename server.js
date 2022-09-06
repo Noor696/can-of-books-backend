@@ -6,6 +6,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
+//access request.body: if you need to use the body on code you need to add new line on server.js to allow you to fetch and see the data on the body
+app.use(express.json());
 app.use(cors()); //make my server open for any request
 
 const PORT = process.env.PORT || 3001;
@@ -56,24 +58,12 @@ async function seedData(){
 app.get('/',homeHandler);
 app.get('/books', booksRouteHandler)
 app.get('/test',testHandler);
+app.post('/books',addBookHandler); //this route allow the user to add the book, you shuld match method and route to do handler
 app.get('*',defualtHandler);
 
 // http://localhost:3001/
 function homeHandler(request,response){
   response.send("Hi from the home route");
-}
-// http://localhost:3001/books
-function booksRouteHandler(request,response){
-  BookModel.find({},(err,result) =>{
-    if(err){
-      console.log(err);
-    }
-    else 
-    {
-      console.log(result);
-      response.json(result);
-    }
-  })
 }
 
 // http://localhost:3001/test
@@ -81,10 +71,44 @@ function testHandler(request,response){
   response.status(200).send("you are request the test route");
 }
 
+// this route responsable to add the book data inside the data base(Book) inside the collection (Books)
+// use (create) when post method [post =>create ] to create the data into the database
+// create method it will take the time , we need to force it to await and async
+// should put the create(post) method before find(get) and send the data as the response
+async function addBookHandler(request,response){
+  //console.log(request.body);  //if the method (post) you can access the data request.body
+  const {title,description,status} = request.body; //Destructuring assignment
+  await BookModel.create({
+    title: title,
+    description: description,
+    status: status,
+  });
+
+}
+
+// http://localhost:3001/books  
+// use (find) when get the method [get =>find ]
+//if the method (get) you can access the data request.query
+function booksRouteHandler(request,response){
+  BookModel.find({},(err,result) =>{
+    if(err){
+      console.log(err);
+    }
+    else 
+    {
+      // console.log(result);
+      response.json(result);
+    }
+  })
+}
+
+
+
 // http://localhost:3001/*
 function defualtHandler(request,response){
   response.status(404).send("sory,404 page not found");
 }
+
 
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
