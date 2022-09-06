@@ -6,7 +6,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-app.use(cors());
+app.use(cors()); //make my server open for any request
 
 const PORT = process.env.PORT || 3001;
 
@@ -50,7 +50,7 @@ async function seedData(){
   await fourthbook.save();
 }
 
- seedData(); //call seedData function
+//seedData(); //call seedData function
 
 // Routes
 app.get('/',homeHandler);
@@ -62,15 +62,16 @@ app.get('*',defualtHandler);
 function homeHandler(request,response){
   response.send("Hi from the home route");
 }
-
+// http://localhost:3001/books
 function booksRouteHandler(request,response){
   BookModel.find({},(err,result) =>{
     if(err){
-      console.log(err)
+      console.log(err);
     }
     else 
     {
-      response.send(result)
+      console.log(result);
+      response.json(result);
     }
   })
 }

@@ -24,8 +24,10 @@ Books are life-changing. They have the power to enlighten, educate, entertain, h
 1. Set up your repositories
 2. Storage: As a user, I'd like to view the list of books, so that whenever I visit the page, I can see the a full list of best books.
   - 
-3. Createt the front end
-4. send request to the server
+3. Book Component: As a user, I'd like to see the list of books, so that I can see what's recommended to me.
+-------
+1. Create: As a user, I'd like to add a new book to the shelf, so that I can update the list with my own recommendations.
+
 
 ## Architecture
 
