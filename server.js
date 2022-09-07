@@ -27,23 +27,23 @@ const BookModel = mongoose.model('Books', BooksSchema); // 3- compile the schema
 async function seedData(){
   const firstbook = new BookModel({
     title: "Oliver Twist",
-    description: "Charles Dickens's second novel, was published as a serial from 1837 to 1839,",
-    status: "English Language,Available",
+    description: "English Language,Available, Charles Dickens's second novel, was published as a serial from 1837 to 1839,",
+    status: "Novel",
   })
   const secondbook = new BookModel({
     title: "The Merchant of Venice",
-    description: "The Merchant of Venice is a 16th-century play written by William Shakespeare in which a merchant in Venice named Antonio defaults on a large loan provided by a Jewish moneylender, Shylock. It is believed to have been written between 1596 and 1599.",
-    status: "English Language,Available",
+    description: "English Language,Available,The Merchant of Venice is a 16th-century play written by William Shakespeare in which a merchant in Venice named Antonio defaults on a large loan provided by a Jewish moneylender, Shylock. It is believed to have been written between 1596 and 1599.",
+    status: "Novel",
   })
   const thirdbook = new BookModel({
     title: "Les Misérables",
-    description: "The experience of reading Les Miserables is akin to that of any lengthy novel. For hundreds of pages you will be hooked, dazzled, unable to put it down.",
-    status: "English Language,Available",
+    description: "English Language,Available,The experience of reading Les Miserables is akin to that of any lengthy novel. For hundreds of pages you will be hooked, dazzled, unable to put it down.",
+    status: "Novel",
   })
   const fourthbook = new BookModel({
     title: "Jane Eyre",
-    description: " is a novel by the English writer Charlotte Brontë",
-    status: "English Language,Available",
+    description: "English Language,Available, is a novel by the English writer Charlotte Brontë",
+    status: "Novel",
   })
 
   await firstbook.save();
