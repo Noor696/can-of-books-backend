@@ -59,6 +59,8 @@ app.get('/',homeHandler);
 app.get('/books', booksRouteHandler)
 app.get('/test',testHandler);
 app.post('/books',addBookHandler); //this route allow the user to add the book, you shuld match method and route to do handler
+app.delete('/books/:id',deleteBookHandler); 
+app.put('/books/:id',updateBookHandler);
 app.get('*',defualtHandler);
 
 // http://localhost:3001/
@@ -98,6 +100,44 @@ function booksRouteHandler(request,response){
     {
       // console.log(result);
       response.json(result);
+    }
+  })
+}
+
+function deleteBookHandler(request,response) { 
+  const bookId = request.params.id;                // use param if you want to get specific section from the url [(id => '/books/:id') === (noor => '/books/:noor') means use any name
+  BookModel.deleteOne({_id:bookId},(err,result)=>{
+      
+      BookModel.find({},(err,result)=>{ 
+          if(err)
+          {
+              console.log(err);
+          }
+          else
+          {
+              // console.log(result);
+              response.send(result);
+          }
+      })
+  }) 
+}
+
+function updateBookHandler (request,response) {
+  const id = request.param.id;
+  const {title,description,status} = request.body; //Destructuring assignment
+  BookModel.findByIdAndUpdate(id, {title,description,status}, (err,result)=>{
+    if (err){
+      console.log(err);
+    }
+    else {
+      BookModel.find({},((err,result)=>{
+        if (err){
+          console.log(err);
+        }
+        else {
+          response.send(result);
+        }
+      }))
     }
   })
 }
