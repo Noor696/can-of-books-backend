@@ -127,7 +127,7 @@ function deleteBookHandler(request,response) {
 }
 
 function updateBookHandler (request,response) {
-  const id = request.param.id;
+  const id = request.params.id;
   const {title,description,status} = request.body; //Destructuring assignment
   BookModel.findByIdAndUpdate(id, {title,description,status}, (err,result)=>{
     if (err){
