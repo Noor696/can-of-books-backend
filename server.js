@@ -11,11 +11,12 @@ app.use(express.json());
 app.use(cors()); //make my server open for any request
 
 const PORT = process.env.PORT || 3005;
+const linkdb =process.env.linkDB;
 
 // mongoose config ('mongodb://localhost:27017/test')
 //mongoose.connect('mongodb://localhost:27017/Book', {useNewUrlParser: true, useUnifiedTopology: true}); // 1 - connect mongoose with DB
 
-mongoose.connect('mongodb://NoorAlkhateeb:Noor_45969@ac-r8lccbr-shard-00-00.gjoluku.mongodb.net:27017,ac-r8lccbr-shard-00-01.gjoluku.mongodb.net:27017,ac-r8lccbr-shard-00-02.gjoluku.mongodb.net:27017/?ssl=true&replicaSet=atlas-a59n8a-shard-0&authSource=admin&retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true}); // 1 - connect mongoose with DB
+mongoose.connect(`${linkdb}`, {useNewUrlParser: true, useUnifiedTopology: true}); // 1 - connect mongoose with DB
 
 
 const BooksSchema = new mongoose.Schema({  //2- define the Schema (object structure)
@@ -55,7 +56,7 @@ async function seedData(){
   await fourthbook.save();
 }
 
-seedData(); //call seedData function
+//seedData(); //call seedData function
 
 // Routes
 app.get('/',homeHandler);
