@@ -89,6 +89,17 @@ async function addBookHandler(request,response){
     description: description,
     status: status,
   });
+  BookModel.find({},(err,result)=>{
+    if(err)
+    {
+        console.log(err);
+    }
+    else
+    {  
+        // console.log(result);
+        response.send(result);
+    }
+})
 
 }
 
@@ -126,10 +137,10 @@ function deleteBookHandler(request,response) {
   }) 
 }
 
-function updateBookHandler (request,response) {
+async function updateBookHandler (request,response) {
   const id = request.params.id;
   const {title,description,status} = request.body; //Destructuring assignment
-  BookModel.findByIdAndUpdate(id, {title,description,status}, (err,result)=>{
+  BookModel.findByIdAndUpdate(id,{title,description,status},(err,result)=>{
     if (err){
       console.log(err);
     }
